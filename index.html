@@ -40,6 +40,26 @@
             overflow-y: auto; /* Enable vertical scrolling */
             max-height: calc(100vh - 80px); /* Adjust height to avoid overlap with the nav bar */
         }
+    .nav-button {
+        position: relative; /* Для позиционирования псевдоэлемента */
+        padding-top: 10px; /* Добавляем отступ сверху для полоски */
+    }
+
+    .nav-button::after {
+        content: '';
+        position: absolute;
+        top: 0; /* Позиционируем полоску вверху кнопки */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%; /* Ширина полоски */
+        height: 4px; /* Высота полоски */
+        background-color: transparent; /* Цвет полоски по умолчанию */
+        transition: background-color 0.3s; /* Плавный переход цвета */
+    }
+
+    .nav-button.active::after {
+        background-color: #ff4500; /* Цвет активной полоски */
+    }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col h-screen">
@@ -136,23 +156,23 @@
     </div>
 </div>
 
-<nav class="bg-white shadow fixed bottom-0 w-full" id="nav-bar">
-    <div class="max-w-lg mx-auto px-4">
-        <div class="flex justify-between">
-            <button class="w-full py-2 flex flex-col items-center text-gray-600 hover:text-red-500" id="btn-browse">
-                <i class="fas fa-heart text-2xl"></i>
+<nav class="bg-white shadow fixed bottom-0 w-full" id="nav-bar" style="height: 80px;">
+    <div class="max-w-lg mx-auto px-4 h-full">
+        <div class="flex justify-between h-full">
+            <button class="nav-button w-full py-3 flex flex-col items-center text-gray-600 hover:text-red-500" id="btn-browse">
+                <i class="fas fa-heart text-3xl"></i>
             </button>
-            <button class="w-full py-2 flex flex-col items-center text-gray-600 hover:text-blue-500" id="btn-map">
-                <i class="fas fa-map-marker-alt text-2xl"></i>
+            <button class="nav-button w-full py-3 flex flex-col items-center text-gray-600 hover:text-blue-500" id="btn-map">
+                <i class="fas fa-map-marker-alt text-3xl"></i>
             </button>
-            <button class="w-full py-2 flex flex-col items-center text-gray-600 hover:text-orange-500" id="btn-home">
-                <i class="fas fa-home text-2xl"></i>
+            <button class="nav-button w-full py-3 flex flex-col items-center text-gray-600 hover:text-orange-500" id="btn-home">
+                <i class="fas fa-home text-3xl"></i>
             </button>
-            <button class="w-full py-2 flex flex-col items-center text-gray-600 hover:text-green-500" id="btn-chats">
-                <i class="fas fa-comments text-2xl"></i>
+            <button class="nav-button w-full py-3 flex flex-col items-center text-gray-600 hover:text-green-500" id="btn-chats">
+                <i class="fas fa-comments text-3xl"></i>
             </button>
-            <button class="w-full py-2 flex flex-col items-center text-gray-600 hover:text-yellow-500" id="btn-profile">
-                <i class="fas fa-user text-2xl"></i>
+            <button class="nav-button w-full py-3 flex flex-col items-center text-gray-600 hover:text-yellow-500" id="btn-profile">
+                <i class="fas fa-user text-3xl"></i>
             </button>
         </div>
     </div>
@@ -176,16 +196,18 @@
             profile: document.getElementById('btn-profile'),
         };
 
-        function showSection(section) {
-            for (const key in sections) {
-                if (sections.hasOwnProperty(key)) {
-                    sections[key].classList.add('hidden');
-                    buttons[key]?.classList.remove(`active-${key}`);
-                }
-            }
-            sections[section].classList.remove('hidden');
-            buttons[section]?.classList.add(`active-${section}`);
+function showSection(section) {
+    for (const key in sections) {
+        if (sections.hasOwnProperty(key)) {
+            sections[key].classList.add('hidden');
+            buttons[key]?.classList.remove(`active-${key}`);
+            buttons[key]?.classList.remove('active'); // Удаляем класс active
         }
+    }
+    sections[section].classList.remove('hidden');
+    buttons[section]?.classList.add(`active-${section}`);
+    buttons[section]?.classList.add('active'); // Добавляем класс active
+}
 
         // Add event listeners for buttons
         buttons.home.addEventListener('click', () => showSection('home'));
