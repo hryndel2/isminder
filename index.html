@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>
-        Dating App
+        Приложение для знакомств
     </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
@@ -11,147 +11,163 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            user-select: none; /* Запретить выделение текста на всей странице */
-        }
-        .active-browse {
-            color: #ff0000 !important;
-        }
-        .active-map {
-            color: #0000ff !important;
-        }
-        .active-chats {
-            color: #008000 !important;
-        }
-        .active-profile {
-            color: #ffd700 !important;
-        }
-        .active-home {
-            color: #ff4500 !important;
-        }
-        .active-section {
-            border-top: 2px solid #ff4500;
+            user-select: none;
         }
         .hidden {
             display: none !important;
         }
-        /* New styles for the sections */
         #home, #browse, #map, #chats, #profile {
-            flex-grow: 1; /* Allow the sections to grow */
-            overflow-y: auto; /* Enable vertical scrolling */
-            max-height: calc(100vh - 80px); /* Adjust height to avoid overlap with the nav bar */
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: calc(100vh - 80px);
         }
-    .nav-button {
-        position: relative; /* Для позиционирования псевдоэлемента */
-        padding-top: 10px; /* Добавляем отступ сверху для полоски */
-    }
-
-    .nav-button::after {
-        content: '';
-        position: absolute;
-        top: 0; /* Позиционируем полоску вверху кнопки */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50%; /* Ширина полоски */
-        height: 4px; /* Высота полоски */
-        background-color: transparent; /* Цвет полоски по умолчанию */
-        transition: background-color 0.3s; /* Плавный переход цвета */
-    }
-
-    .nav-button.active::after {
-        background-color: #ff4500; /* Цвет активной полоски */
-    }
+        .nav-button {
+            position: relative;
+            padding-top: 10px;
+        }
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 4px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        .nav-button.active::after {
+            background-color: currentColor;
+        }
+        .swipe-container {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col h-screen">
 <div class="flex-grow p-4" id="content">
     <!-- Home Section -->
     <div class="hidden" id="home">
-		<div class="bg-white p-4 rounded shadow mb-4" style="max-height: calc(100vh - 80px); overflow-y: auto;">
-			<img alt="Profile picture of a person" class="w-full h-66 object-contain rounded mb-2" src="https://shapka-youtube.ru/wp-content/uploads/2024/08/lyagushka-mem-na-avu.jpg"/>
-			<h2 class="text-lg font-semibold">Айдамир, 22</h2>
-			<p class="text-gray-600 mb-2">Работаю в Киберван.</p>
-			<div class="flex flex-wrap mt-2">
-				<span class="bg-blue-200 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-					#python
-				</span>
-				<span class="bg-green-200 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-					#c#
-				</span>
-				<span class="bg-yellow-200 text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
-					#айдамиркрут
-				</span>
-			</div>
-		</div>
+        <div class="bg-white p-4 rounded shadow mb-4 swipe-container" style="max-height: calc(100vh - 80px); overflow-y: auto;">
+            <img alt="Profile picture of a person" class="w-full h-66 object-contain rounded mb-2" height="400" src="https://storage.googleapis.com/a1aa/image/XNMz652_pbM-_00By9vcAZRmlMiLMf7i6Z_T5rDjcxg.jpg" width="600"/>
+            <h2 class="text-lg font-semibold">Айдамир, 22</h2>
+            <p class="text-gray-600 mb-2">Работаю в Киберван.</p>
+            <div class="flex flex-wrap mt-2">
+                <span class="bg-blue-200 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #python
+                </span>
+                <span class="bg-green-200 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #c#
+                </span>
+                <span class="bg-yellow-200 text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #айдамиркрут
+                </span>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded shadow mb-4 swipe-container hidden" style="max-height: calc(100vh - 80px); overflow-y: auto;">
+            <img alt="Profile picture of a person" class="w-full h-66 object-contain rounded mb-2" height="400" src="https://storage.googleapis.com/a1aa/image/G9E4RMPV0RQuZy_j_Vrmd2PmfNddLQJpohTnTBgvX60.jpg" width="600"/>
+            <h2 class="text-lg font-semibold">Армен, 25</h2>
+            <p class="text-gray-600 mb-2">Работает в TechCorp.</p>
+            <div class="flex flex-wrap mt-2">
+                <span class="bg-blue-200 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #javascript
+                </span>
+                <span class="bg-green-200 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #react
+                </span>
+                <span class="bg-yellow-200 text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #developer
+                </span>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded shadow mb-4 swipe-container hidden" style="max-height: calc(100vh - 80px); overflow-y: auto;">
+            <img alt="Profile picture of a person" class="w-full h-66 object-contain rounded mb-2" height="400" src="https://storage.googleapis.com/a1aa/image/G9E4RMPV0RQuZy_j_Vrmd2PmfNddLQJpohTnTBgvX60.jpg" width="600"/>
+            <h2 class="text-lg font-semibold">Ашот, 28</h2>
+            <p class="text-gray-600 mb-2">Работает в WebSolutions.</p>
+            <div class="flex flex-wrap mt-2">
+                <span class="bg-blue-200 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #html
+                </span>
+                <span class="bg-green-200 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #css
+                </span>
+                <span class="bg-yellow-200 text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    #frontend
+                </span>
+            </div>
+        </div>
     </div>
 
     <!-- Browse Section -->
     <div class="hidden" id="browse">
-        <h1 class="text-2xl font-bold mb-4">Browse People</h1>
+        <h1 class="text-2xl font-bold mb-4">Просмотр людей</h1>
         <div class="flex justify-center mb-4">
             <button class="px-4 py-2 mx-2 border border-red-500 rounded active-liked-me" id="btn-liked-me">
-                Liked Me
+                Понравились мне
             </button>
             <button class="px-4 py-2 mx-2 border border-red-500 rounded" id="btn-me-like">
-                Me Like
+                Я понравился
             </button>
         </div>
         <div class="grid grid-cols-2 gap-4" id="liked-me-section">
             <div class="bg-white p-4 rounded shadow">
-                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/kBsQko_NFyMnHamMQ16EG5ISIcDXqsYimkeGEFHfhDE.jpg" width="150"/>
-                <h2 class="text-lg font-semibold">Person 1</h2>
-                <p class="text-gray-600">Description of person 1</p>
+                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/XNMz652_pbM-_00By9vcAZRmlMiLMf7i6Z_T5rDjcxg.jpg" width="150"/>
+                <h2 class="text-lg font-semibold">Армен</h2>
+                <p class="text-gray-600">Описание Армена</p>
             </div>
             <div class="bg-white p-4 rounded shadow">
-                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/kBsQko_NFyMnHamMQ16EG5ISIcDXqsYimkeGEFHfhDE.jpg" width="150"/>
-                <h2 class="text-lg font-semibold">Person 2</h2>
-                <p class="text-gray-600">Description of person 2</p>
+                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/XNMz652_pbM-_00By9vcAZRmlMiLMf7i6Z_T5rDjcxg.jpg" width="150"/>
+                <h2 class="text-lg font-semibold">Ашот</h2>
+                <p class="text-gray-600">Описание Ашота</p>
             </div>
         </div>
         <div class="grid grid-cols-2 gap-4 hidden" id="me-like-section">
             <div class="bg-white p-4 rounded shadow">
-                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/kBsQko_NFyMnHamMQ16EG5ISIcDXqsYimkeGEFHfhDE.jpg" width="150"/>
-                <h2 class="text-lg font-semibold">Person 3</h2>
-                <p class="text-gray-600">Description of person 3</p>
+                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/XNMz652_pbM-_00By9vcAZRmlMiLMf7i6Z_T5rDjcxg.jpg" width="150"/>
+                <h2 class="text-lg font-semibold">Арам</h2>
+                <p class="text-gray-600">Описание Арама</p>
             </div>
             <div class="bg-white p-4 rounded shadow">
-                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/kBsQko_NFyMnHamMQ16EG5ISIcDXqsYimkeGEFHfhDE.jpg" width="150"/>
-                <h2 class="text-lg font-semibold">Person 4</h2>
-                <p class="text-gray-600">Description of person 4</p>
+                <img alt="Profile picture of a person" class="w-full h-32 object-cover rounded mb-2" height="150" src="https://storage.googleapis.com/a1aa/image/XNMz652_pbM-_00By9vcAZRmlMiLMf7i6Z_T5rDjcxg.jpg" width="150"/>
+                <h2 class="text-lg font-semibold">Арам</h2>
+                <p class="text-gray-600">Описание Арама</p>
             </div>
         </div>
     </div>
 
     <!-- Map Section -->
     <div class="hidden" id="map">
-        <h1 class="text-2xl font-bold mb-4">Map</h1>
-        <img alt="Map showing nearby users" class="w-full h-64 object-cover rounded" height="400" src="https://storage.googleapis.com/a1aa/image/MgcSsEGfN52jc24-7LcBlNJH2CE9wzFOYQkou85GTEk.jpg" width="600"/>
+        <h1 class="text-2xl font-bold mb-4">Карта</h1>
+        <div id="map-container" class="w-full h-64 rounded" style="height: 400px;"></div>
     </div>
 
     <!-- Chats Section -->
     <div class="hidden" id="chats">
-        <h1 class="text-2xl font-bold mb-4">Chats</h1>
+        <h1 class="text-2xl font-bold mb-4">Чаты</h1>
         <div class="bg-white p-4 rounded shadow mb-4 chat-item" data-chat="chat1">
-            <h2 class="text-lg font-semibold">Chat with Person 1</h2>
-            <p class="text-gray-600">Last message preview...</p>
+            <h2 class="text-lg font-semibold">Чат с Арменом</h2>
+            <p class="text-gray-600">Предпросмотр последнего сообщения...</p>
         </div>
         <div class="bg-white p-4 rounded shadow mb-4 chat-item" data-chat="chat2">
-            <h2 class="text-lg font-semibold">Chat with Person 2</h2>
-            <p class="text-gray-600">Last message preview...</p>
+            <h2 class="text-lg font-semibold">Чат с Ашотом</h2>
+            <p class="text-gray-600">Предпросмотр последнего сообщения...</p>
         </div>
     </div>
 
     <!-- Profile Section -->
     <div class="hidden" id="profile">
-        <h1 class="text-2xl font-bold mb-4">Profile</h1>
+        <h1 class="text-2xl font-bold mb-4">Профиль</h1>
         <div class="bg-white p-4 rounded shadow">
-            <img alt="Profile picture of the user" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" height="150" src=" https://storage.googleapis.com/a1aa/image/azWWZAkclFCqiCGRlviwQ9YnUenmXtjJNHHKDHbPWrw.jpg" width="150"/>
-            <h2 class="text-lg font-semibold text-center">Your Name</h2>
-            <p class="text-gray-600 text-center">Your description</p>
+            <img alt="Profile picture of the user" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" height="150" src="https://storage.googleapis.com/a1aa/image/A-Gwji0-jusZmICp1EB7VGbYFkSKh7Kx8n0c_efrhYg.jpg" width="150"/>
+            <h2 class="text-lg font-semibold text-center">Ваше имя</h2>
+            <p class="text-gray-600 text-center">Ваше описание</p>
             <div class="mt-4 flex justify-center space-x-4">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Edit Photo</button>
-                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Edit Info</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Редактировать фото</button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Редактировать информацию</button>
             </div>
-			
+            <div class="mt-4 flex justify-center">
+                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Выйти</button>
+            </div>
         </div>
     </div>
 </div>
@@ -196,30 +212,27 @@
             profile: document.getElementById('btn-profile'),
         };
 
-function showSection(section) {
-    for (const key in sections) {
-        if (sections.hasOwnProperty(key)) {
-            sections[key].classList.add('hidden');
-            buttons[key]?.classList.remove(`active-${key}`);
-            buttons[key]?.classList.remove('active'); // Удаляем класс active
+        function showSection(section) {
+            for (const key in sections) {
+                if (sections.hasOwnProperty(key)) {
+                    sections[key].classList.add('hidden');
+                    buttons[key]?.classList.remove(`active-${key}`);
+                    buttons[key]?.classList.remove('active');
+                }
+            }
+            sections[section].classList.remove('hidden');
+            buttons[section]?.classList.add(`active-${section}`);
+            buttons[section]?.classList.add('active');
         }
-    }
-    sections[section].classList.remove('hidden');
-    buttons[section]?.classList.add(`active-${section}`);
-    buttons[section]?.classList.add('active'); // Добавляем класс active
-}
 
-        // Add event listeners for buttons
         buttons.home.addEventListener('click', () => showSection('home'));
         buttons.browse.addEventListener('click', () => showSection('browse'));
         buttons.map.addEventListener('click', () => showSection('map'));
         buttons.chats.addEventListener('click', () => showSection('chats'));
         buttons.profile.addEventListener('click', () => showSection('profile'));
 
-        // Show the home section by default
         showSection('home');
 
-        // Add functionality for the "Liked Me" and "Me Like" buttons
         document.getElementById('btn-liked-me').addEventListener('click', () => {
             document.getElementById('liked-me-section').classList.remove('hidden');
             document.getElementById('me-like-section').classList.add('hidden');
@@ -229,7 +242,63 @@ function showSection(section) {
             document.getElementById('me-like-section').classList.remove('hidden');
             document.getElementById('liked-me-section').classList.add('hidden');
         });
+
+        // Initialize Google Map
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map-container"), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+                disableDefaultUI: true
+            });
+        }
+
+        window.initMap = initMap;
+
+        // Swipe functionality for Home section only
+        let startX;
+        let currentX;
+        let isSwiping = false;
+
+        document.querySelectorAll('#home .swipe-container').forEach(container => {
+            container.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isSwiping = true;
+            });
+
+            container.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                currentX = e.touches[0].clientX;
+                const diffX = currentX - startX;
+                container.style.transform = `translateX(${diffX}px)`;
+            });
+
+            container.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                isSwiping = false;
+                const diffX = currentX - startX;
+                if (Math.abs(diffX) > 100) {
+                    container.style.transform = `translateX(${diffX > 0 ? '100%' : '-100%'})`;
+                    container.style.opacity = '0';
+                    setTimeout(() => {
+                        container.style.display = 'none';
+                        showNextUser(container);
+                    }, 300);
+                } else {
+                    container.style.transform = 'translateX(0)';
+                }
+            });
+        });
+
+        function showNextUser(container) {
+            const nextUser = container.nextElementSibling;
+            if (nextUser) {
+                nextUser.style.display = 'block';
+                nextUser.style.opacity = '1';
+                nextUser.style.transform = 'translateX(0)';
+            }
+        }
     });
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
